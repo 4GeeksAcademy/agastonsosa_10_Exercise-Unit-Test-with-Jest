@@ -1,4 +1,4 @@
-// importar las funciones del archivo app.js
+
 const { sum, fromDollarToYen, fromEuroToDollar, fromYenToPound } = require('./app.js');
 
 // Prueba para la función sum
