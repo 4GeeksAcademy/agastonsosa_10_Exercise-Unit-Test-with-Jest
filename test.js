@@ -1,31 +1,29 @@
-// importar la función sum del archivo app.js
-const { sum } = require('./app.js');
+// importar las funciones del archivo app.js
+const { sum, fromDollarToYen, fromEuroToDollar, fromYenToPound } = require('./app.js');
 
-// comienza tu primera prueba
-test('adds 14 + 9 to equal 23', () => {
-    //dentro de la prueba llamamos a nuestra función sum con 2 números
-    let total = sum(14, 9);
-
-    // esperamos que la suma de esos 2 números sea 23
-    expect(total).toBe(23);
+// Prueba para la función sum
+test('adds 5 + 7 to equal 12', () => {
+    let total = sum(5, 7);
+    expect(total).toBe(12);
 });
 
-test("One euro should be 1.206 dollars", function(){
-    // importo la funcion desde app.js
-    const { fromEuroToDollar } = require('./app.js')
-    
-    // hago mi comparacion (la prueba)
-    expect(fromEuroToDollar(3.5)).toBe(4.2); //1 euro son 1.2 dolares, entonces 3.5 euros deberian ser = (3.5 * 1.2)
-})
-
-test("One dollar should be 106.58 yens", () => {
-    const { fromDollarToYen } = require('./app.js')
-
-    expect(fromDollarToYen(5)).toBeCloseTo(532.9166666); //1 Dólar estadounidense (USD) equivale a 106.5833 Yenes japoneses (JPY) aproximadamente.
+// Prueba para la función fromEuroToDollar
+test("One euro should be 1.2 dollars", function(){
+    expect(fromEuroToDollar(1)).toBe(1.2);
+    expect(fromEuroToDollar(2)).toBe(2.4);
+    expect(fromEuroToDollar(0)).toBe(0);
 });
 
-test("One yen should be 0.00625 pounds", () => {
-    const { fromYenToPound } = require('./app.js')
+// Prueba para la función fromDollarToYen
+test("One dollar should be around 106.58 yens", () => {
+    expect(fromDollarToYen(1)).toBeCloseTo(106.58); 
+    expect(fromDollarToYen(10)).toBeCloseTo(1065.833);
+    expect(fromDollarToYen(0)).toBe(0);
+});
 
-    expect(fromYenToPound(1000)).toBeCloseTo(6.25488663); //1 Yen japonés (JPY) equivale a 0.00625 Libras esterlinas (GBP)
+// Prueba para la función fromYenToPound
+test("One yen should be around 0.00625 pounds", () => {
+    expect(fromYenToPound(100)).toBeCloseTo(0.625); 
+    expect(fromYenToPound(500)).toBeCloseTo(3.1274);
+    expect(fromYenToPound(0)).toBe(0);
 });
